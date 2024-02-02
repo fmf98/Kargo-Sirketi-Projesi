@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Yonlendir";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<div class="container mt-3">
+ <h1> Çalışan iş durumu yönetimi </h1>
+    <hr />
+    <div class="card">
+        <div class="card-header">
+            <p> Lütfen bilgileri giriniz </p>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Yonlendir", "Yonetici", FormMethod.Post))
+            {
+                <div class="mb-3">
+                    <label for="KrBaslik" class="form-label">Başlık giriniz</label>
+                    <input type="text" class="form-control" id="KrBaslik" name="KrBaslik">
+                </div>
+                <div class="mb-3">
+                    <label for="KrNot" class="form-label">Not giriniz</label>
+                    <input type="text" class="form-control" id="KrNot" name="KrNot">
+                </div>
+                <div class="mb-3">
+                    <label for="KrAdres" class="form-label">Teslim adresi giriniz</label>
+                    <input type="text" class="form-control" id="KrAdres" name="KrAdres">
+                </div>
+                <div class="mb-3">
+                    <label for="SelectCal" class="form-label">Çalışan seçiniz</label>
+                    <select class="form-select" name="selectCal" id="selectCal">
+                        @foreach (var cal in ViewBag.calisanlar)
+                        {
+                            <option value="@cal.PrId">@cal.PrAdSoyad</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit"> Çalışana Yönlendir </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

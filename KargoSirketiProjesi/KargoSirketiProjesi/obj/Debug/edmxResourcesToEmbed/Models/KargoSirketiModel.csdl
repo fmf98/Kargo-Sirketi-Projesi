@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KargoSirketiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="KargoDurum">
+    <Key>
+      <PropertyRef Name="KargoDurumId" />
+    </Key>
+    <Property Name="KargoDurumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KargoDurumAd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kargolar" Relationship="Self.FK_Kargolar_KargoDurum" FromRole="KargoDurum" ToRole="Kargolar" />
+  </EntityType>
+  <EntityType Name="Kargolar">
+    <Key>
+      <PropertyRef Name="KargoId" />
+    </Key>
+    <Property Name="KargoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KargoPrID" Type="Int32" />
+    <Property Name="KargoAlımTarih" Type="DateTime" Precision="3" />
+    <Property Name="KargoTeslimTarih" Type="DateTime" Precision="3" />
+    <Property Name="KargoDurumId" Type="Int32" />
+    <NavigationProperty Name="KargoDurum" Relationship="Self.FK_Kargolar_KargoDurum" FromRole="Kargolar" ToRole="KargoDurum" />
+    <NavigationProperty Name="Personeller" Relationship="Self.FK_Kargolar_Personeller" FromRole="Kargolar" ToRole="Personeller" />
+    <Property Name="KargoNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KargoAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KargoBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Personeller">
+    <Key>
+      <PropertyRef Name="PrId" />
+    </Key>
+    <Property Name="PrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrKullanici" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrSifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrSubeId" Type="Int32" />
+    <Property Name="PrYetkiId" Type="Int32" />
+    <NavigationProperty Name="Kargolar" Relationship="Self.FK_Kargolar_Personeller" FromRole="Personeller" ToRole="Kargolar" />
+    <NavigationProperty Name="Subeler" Relationship="Self.FK_Personeller_Subeler" FromRole="Personeller" ToRole="Subeler" />
+    <NavigationProperty Name="Yetkiler" Relationship="Self.FK_Personeller_Yetkiler" FromRole="Personeller" ToRole="Yetkiler" />
+  </EntityType>
+  <EntityType Name="Subeler">
+    <Key>
+      <PropertyRef Name="SubeId" />
+    </Key>
+    <Property Name="SubeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubeKonum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personeller" Relationship="Self.FK_Personeller_Subeler" FromRole="Subeler" ToRole="Personeller" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Yetkiler">
+    <Key>
+      <PropertyRef Name="YetkiId" />
+    </Key>
+    <Property Name="YetkiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YetkiTipi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personeller" Relationship="Self.FK_Personeller_Yetkiler" FromRole="Yetkiler" ToRole="Personeller" />
+  </EntityType>
+  <Association Name="FK_Kargolar_KargoDurum">
+    <End Role="KargoDurum" Type="Self.KargoDurum" Multiplicity="0..1" />
+    <End Role="Kargolar" Type="Self.Kargolar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KargoDurum">
+        <PropertyRef Name="KargoDurumId" />
+      </Principal>
+      <Dependent Role="Kargolar">
+        <PropertyRef Name="KargoDurumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kargolar_Personeller">
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="0..1" />
+    <End Role="Kargolar" Type="Self.Kargolar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personeller">
+        <PropertyRef Name="PrId" />
+      </Principal>
+      <Dependent Role="Kargolar">
+        <PropertyRef Name="KargoPrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personeller_Subeler">
+    <End Role="Subeler" Type="Self.Subeler" Multiplicity="0..1" />
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeId" />
+      </Principal>
+      <Dependent Role="Personeller">
+        <PropertyRef Name="PrSubeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personeller_Yetkiler">
+    <End Role="Yetkiler" Type="Self.Yetkiler" Multiplicity="0..1" />
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetkiler">
+        <PropertyRef Name="YetkiId" />
+      </Principal>
+      <Dependent Role="Personeller">
+        <PropertyRef Name="PrYetkiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KargoSirketiDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="KargoDurum" EntityType="Self.KargoDurum" />
+    <EntitySet Name="Kargolar" EntityType="Self.Kargolar" />
+    <EntitySet Name="Personeller" EntityType="Self.Personeller" />
+    <EntitySet Name="Subeler" EntityType="Self.Subeler" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Yetkiler" EntityType="Self.Yetkiler" />
+    <AssociationSet Name="FK_Kargolar_KargoDurum" Association="Self.FK_Kargolar_KargoDurum">
+      <End Role="KargoDurum" EntitySet="KargoDurum" />
+      <End Role="Kargolar" EntitySet="Kargolar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kargolar_Personeller" Association="Self.FK_Kargolar_Personeller">
+      <End Role="Personeller" EntitySet="Personeller" />
+      <End Role="Kargolar" EntitySet="Kargolar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personeller_Subeler" Association="Self.FK_Personeller_Subeler">
+      <End Role="Subeler" EntitySet="Subeler" />
+      <End Role="Personeller" EntitySet="Personeller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personeller_Yetkiler" Association="Self.FK_Personeller_Yetkiler">
+      <End Role="Yetkiler" EntitySet="Yetkiler" />
+      <End Role="Personeller" EntitySet="Personeller" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

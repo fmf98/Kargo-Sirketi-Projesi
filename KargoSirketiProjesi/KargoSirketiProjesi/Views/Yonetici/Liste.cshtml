@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<div class="container mb-5" style="background-color: skyblue;">
+    <h1>@ViewBag.calisan.PrAdSoyad sorumluluğundaki kargolar</h1>
+    @if (ViewBag.calisanissayisi != 0)
+     {
+        foreach (var k in ViewBag.kargolar)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <p>@k.KargoBaslik</p>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">@k.KargoNot</li>
+                            <li class="list-group-item">@k.KargoAdres</li>
+                            <li class="list-group-item">Kargo Kabul Tarihi: @k.KargoAlımTarih.ToString("dd MMMM yyyy hh:mm")</li>
+                            <li class="list-group-item">Kargo Teslimat Tarihi: @(k.KargoTeslimTarih!=null ? k.KargoTeslimTarih.ToString("dd MMMM yyyy hh:mm") : "Henüz teslim edilmedi")</li>
+                            <li class="list-group-item">Kargo Durumu: @k.KargoDurum.KargoDurumAd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+     }
+     else
+     {
+        <div class="alert alert-primary" role="alert">
+            Henüz iş yönlendirilmemiş
+        </div>
+     }
+</div>
+

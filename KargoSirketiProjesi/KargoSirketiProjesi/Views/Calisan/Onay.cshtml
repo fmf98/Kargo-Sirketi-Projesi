@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Onay";
+    Layout = "~/Views/Shared/_LayoutCalisan.cshtml";
+}
+
+<div class="container mt-3">
+    @foreach(var k in ViewBag.kargo)
+    {
+        using (Html.BeginForm("Onay", "Calisan", FormMethod.Post))
+        {
+            <div class="card" style="background-color: bisque">
+                <div class="card-header">
+                    @k.KargoBaslik
+                    <div class="card-body">
+                        @k.KargoNot
+                        @k.KargoAdres
+                        @k.KargoAlımTarih.ToString("dd MMMM yyyy hh:mm")
+                        <input type="hidden" name="KargoId" value="@k.KargoId" />
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" type="submit">Kargo Dağıtıma Çıktı</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+      
+     }
+</div>
+

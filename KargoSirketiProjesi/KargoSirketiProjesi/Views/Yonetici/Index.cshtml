@@ -1,0 +1,76 @@
+﻿@model IEnumerable<KargoSirketiProjesi.Models.Personeller>
+
+@{
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Anasayfa</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-0">
+        </div>
+        <div class="col-md-0">
+            <br />
+            <a href="@Url.Action("Create")" class="btn btn-info">
+                <i class="fa-solid fa-plus"></i>Yeni Çalışan Ekle
+
+            </a>
+
+        </div>
+
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrAdSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrKullanici)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrSifre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subeler.SubeKonum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yetkiler.YetkiTipi)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+         {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrAdSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrKullanici)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrSifre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subeler.SubeKonum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yetkiler.YetkiTipi)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details",new {id=item.PrId})" class="btn btn-success">Detaylar</a>
+                    <a href="@Url.Action("Edit",new {id=item.PrId})" class="btn btn-warning">Düzenle</a>
+                    <a href="@Url.Action("Delete",new {id=item.PrId})" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

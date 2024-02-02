@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3cc7385454a4a57907621d672c964f3" Name="Diagram1">
+        <EntityTypeShape EntityType="KargoSirketiDBModel.KargoDurum" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoSirketiDBModel.Kargolar" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoSirketiDBModel.Personeller" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoSirketiDBModel.Subeler" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoSirketiDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoSirketiDBModel.Yetkiler" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="KargoSirketiDBModel.FK_Kargolar_KargoDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoSirketiDBModel.FK_Kargolar_Personeller" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoSirketiDBModel.FK_Personeller_Subeler" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoSirketiDBModel.FK_Personeller_Yetkiler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

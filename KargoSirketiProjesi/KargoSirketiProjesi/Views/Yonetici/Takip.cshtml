@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Çalışan takip";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<div class="container mb-3">
+    <h1>Kargo yönlendirilen çalışanların listesi</h1>
+    @using (Html.BeginForm("Takip", "Yonetici", FormMethod.Post))
+     {
+        <div class="mb-4">
+            <select class="form-select" name="selectCal" id="selectCal">
+                @foreach(var c in ViewBag.calisanlar)
+                 {
+                    <option id="selectCal" value="@c.PrId">@c.PrAdSoyad</option>
+                 }
+            </select>
+        </div>
+        <div class="mb-4">
+            <button class="btn btn-success" type="submit">Çalışanın mevcut işlerini görüntüle</button>
+        </div>
+     }
+</div>
+

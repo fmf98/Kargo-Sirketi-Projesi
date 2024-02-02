@@ -1,0 +1,70 @@
+﻿@model KargoSirketiProjesi.Models.Personeller
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detaylar</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="d-flex align-items-center justify-content-center min-vh-100">
+
+    <div class="container" style="padding-left:300px; padding-right:300px">
+        <h1 class="text-center mb-4">Çalışan Detaylar</h1>
+        <hr />
+        <dl class="dl-horizontal">
+            <div style="background-color:lightgray; color:black;">
+                <dt class="text-center mb-3">
+                    Personel Ad Soyad
+                </dt>
+                <dd class="text-center mb-3">
+                    @Html.DisplayFor(model => model.PrAdSoyad)
+                </dd>
+            </div>
+            <div style="background-color:lightgray; color:black;">
+                <dt class="text-center mb-3">
+                    Personel Kullanıcı Adı
+                </dt>
+                <dd class="text-center mb-3">
+                    @Html.DisplayFor(model => model.PrKullanici)
+                </dd>
+            </div>
+            <div style="background-color:lightgray; color:black;">
+                <dt class="text-center mb-3">
+                    Personel Şifre
+                </dt>
+                <dd class="text-center mb-3">
+                    @Html.DisplayFor(model => model.PrSifre)
+                </dd>
+            </div>
+            <div style="background-color:lightgray; color:black;">
+                <dt class="text-center mb-3">
+                    Personel Şubesi
+                </dt>
+                <dd class="text-center mb-3">
+                    @Html.DisplayFor(model => model.Subeler.SubeKonum)
+                </dd>
+            </div>
+            <div style="background-color:lightgray; color:black;">
+                <dt class="text-center mb-3">
+                    Personel Yetkisi
+                </dt>
+                <dd class="text-center mb-3">
+                    @Html.DisplayFor(model => model.Yetkiler.YetkiTipi)
+                </dd>
+            </div>
+</dl>
+
+        <p class="text-center mt-4">
+            @Html.ActionLink("Anasayfaya dön", "Index", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</body>
+</html>

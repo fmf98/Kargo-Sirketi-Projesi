@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KargoSirketiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="KargoDurum">
+    <Key>
+      <PropertyRef Name="KargoDurumId" />
+    </Key>
+    <Property Name="KargoDurumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KargoDurumAd" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Kargolar">
+    <Key>
+      <PropertyRef Name="KargoId" />
+    </Key>
+    <Property Name="KargoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KargoPrID" Type="int" />
+    <Property Name="KargoAlımTarih" Type="datetime" />
+    <Property Name="KargoTeslimTarih" Type="datetime" />
+    <Property Name="KargoDurumId" Type="int" />
+    <Property Name="KargoNot" Type="nvarchar(max)" />
+    <Property Name="KargoAdres" Type="nvarchar(max)" />
+    <Property Name="KargoBaslik" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Personeller">
+    <Key>
+      <PropertyRef Name="PrId" />
+    </Key>
+    <Property Name="PrId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrAdSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrKullanici" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrSifre" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrSubeId" Type="int" />
+    <Property Name="PrYetkiId" Type="int" />
+  </EntityType>
+  <EntityType Name="Subeler">
+    <Key>
+      <PropertyRef Name="SubeId" />
+    </Key>
+    <Property Name="SubeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubeKonum" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Yetkiler">
+    <Key>
+      <PropertyRef Name="YetkiId" />
+    </Key>
+    <Property Name="YetkiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YetkiTipi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_Kargolar_KargoDurum">
+    <End Role="KargoDurum" Type="Self.KargoDurum" Multiplicity="0..1" />
+    <End Role="Kargolar" Type="Self.Kargolar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KargoDurum">
+        <PropertyRef Name="KargoDurumId" />
+      </Principal>
+      <Dependent Role="Kargolar">
+        <PropertyRef Name="KargoDurumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kargolar_Personeller">
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="0..1" />
+    <End Role="Kargolar" Type="Self.Kargolar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personeller">
+        <PropertyRef Name="PrId" />
+      </Principal>
+      <Dependent Role="Kargolar">
+        <PropertyRef Name="KargoPrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personeller_Subeler">
+    <End Role="Subeler" Type="Self.Subeler" Multiplicity="0..1" />
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeId" />
+      </Principal>
+      <Dependent Role="Personeller">
+        <PropertyRef Name="PrSubeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personeller_Yetkiler">
+    <End Role="Yetkiler" Type="Self.Yetkiler" Multiplicity="0..1" />
+    <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetkiler">
+        <PropertyRef Name="YetkiId" />
+      </Principal>
+      <Dependent Role="Personeller">
+        <PropertyRef Name="PrYetkiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KargoSirketiDBModelStoreContainer">
+    <EntitySet Name="KargoDurum" EntityType="Self.KargoDurum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kargolar" EntityType="Self.Kargolar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personeller" EntityType="Self.Personeller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subeler" EntityType="Self.Subeler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yetkiler" EntityType="Self.Yetkiler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kargolar_KargoDurum" Association="Self.FK_Kargolar_KargoDurum">
+      <End Role="KargoDurum" EntitySet="KargoDurum" />
+      <End Role="Kargolar" EntitySet="Kargolar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kargolar_Personeller" Association="Self.FK_Kargolar_Personeller">
+      <End Role="Personeller" EntitySet="Personeller" />
+      <End Role="Kargolar" EntitySet="Kargolar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personeller_Subeler" Association="Self.FK_Personeller_Subeler">
+      <End Role="Subeler" EntitySet="Subeler" />
+      <End Role="Personeller" EntitySet="Personeller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personeller_Yetkiler" Association="Self.FK_Personeller_Yetkiler">
+      <End Role="Yetkiler" EntitySet="Yetkiler" />
+      <End Role="Personeller" EntitySet="Personeller" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

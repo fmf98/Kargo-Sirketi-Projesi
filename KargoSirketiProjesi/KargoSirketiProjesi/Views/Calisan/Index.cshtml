@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCalisan.cshtml";
+    @model KargoSirketiProjesi.Models.KargoDurumlarıModel
+}
+
+<div class="container mt-4">
+    @foreach(var k in Model.KrDur)
+     {
+        <div class="card">
+            <div class="card-header bg-black text-white">
+                @k.KargoBaslik
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Notlar: @k.KargoNot</li>
+                        <li class="list-group-item">Teslim Adresi: @k.KargoAdres</li>
+                        <li class="list-group-item">Kargo Alım Tarihi: @k.KargoAlımTarih</li>
+                        <li class="list-group-item">Kargo Teslim Tarihi: @k.KargoTeslimTarih</li>
+                        <li class="list-group-item">Kargo Durumu: @k.KargoDurumAd</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br />
+     }
+</div>
+

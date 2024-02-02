@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KargoSirketiDBModelStoreContainer" CdmEntityContainer="KargoSirketiDBEntities">
+    <EntitySetMapping Name="KargoDurum">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.KargoDurum">
+        <MappingFragment StoreEntitySet="KargoDurum">
+          <ScalarProperty Name="KargoDurumId" ColumnName="KargoDurumId" />
+          <ScalarProperty Name="KargoDurumAd" ColumnName="KargoDurumAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kargolar">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.Kargolar">
+        <MappingFragment StoreEntitySet="Kargolar">
+          <ScalarProperty Name="KargoBaslik" ColumnName="KargoBaslik" />
+          <ScalarProperty Name="KargoAdres" ColumnName="KargoAdres" />
+          <ScalarProperty Name="KargoNot" ColumnName="KargoNot" />
+          <ScalarProperty Name="KargoId" ColumnName="KargoId" />
+          <ScalarProperty Name="KargoPrID" ColumnName="KargoPrID" />
+          <ScalarProperty Name="KargoAlımTarih" ColumnName="KargoAlımTarih" />
+          <ScalarProperty Name="KargoTeslimTarih" ColumnName="KargoTeslimTarih" />
+          <ScalarProperty Name="KargoDurumId" ColumnName="KargoDurumId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personeller">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.Personeller">
+        <MappingFragment StoreEntitySet="Personeller">
+          <ScalarProperty Name="PrId" ColumnName="PrId" />
+          <ScalarProperty Name="PrAdSoyad" ColumnName="PrAdSoyad" />
+          <ScalarProperty Name="PrKullanici" ColumnName="PrKullanici" />
+          <ScalarProperty Name="PrSifre" ColumnName="PrSifre" />
+          <ScalarProperty Name="PrSubeId" ColumnName="PrSubeId" />
+          <ScalarProperty Name="PrYetkiId" ColumnName="PrYetkiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subeler">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.Subeler">
+        <MappingFragment StoreEntitySet="Subeler">
+          <ScalarProperty Name="SubeId" ColumnName="SubeId" />
+          <ScalarProperty Name="SubeKonum" ColumnName="SubeKonum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yetkiler">
+      <EntityTypeMapping TypeName="KargoSirketiDBModel.Yetkiler">
+        <MappingFragment StoreEntitySet="Yetkiler">
+          <ScalarProperty Name="YetkiId" ColumnName="YetkiId" />
+          <ScalarProperty Name="YetkiTipi" ColumnName="YetkiTipi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
